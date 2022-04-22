@@ -1,8 +1,4 @@
 Enlace del proyecto en GitHub:
-https://github.com/trp216/Taller1Compunet
+https://github.com/trp216/Taller2Compunet
 
 
-
-
-Enlace del diseño de las pruebas:
-https://docs.google.com/document/d/1uIVGg98_QXx2p_hGriYiyOihtCq-QsCVgj48_vSd1QQ/edit?usp=sharing
