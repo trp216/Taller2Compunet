@@ -10,10 +10,10 @@ import com.example.demo.model.UserType;
 
 public interface UserRepository  extends CrudRepository<User, Long>{
 	
-List<User> findByUsername(String username);
+//List<User> findByUsername(String username);
 	
 	List<User> findByType(UserType type);
 	
-	//User findByUsername(String username);
+	User findByUsername(String username);
 
 }
