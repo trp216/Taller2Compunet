@@ -5,11 +5,13 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.example.demo.model.User;
+import com.example.demo.model.UserApp;
 import com.example.demo.model.UserType;
 import com.example.demo.repositories.UserRepository;
 
+@Service
 public class UserServiceImpl implements UserService{
 
 	private UserRepository userRepository;
@@ -20,7 +22,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Transactional
-	public void save(User user) {
+	public void save(UserApp user) {
 //		if(user.getNewPassword()== null) {
 //			user.setPassword(findById(user.getId()).get().getPassword());
 //			save(user);
@@ -39,26 +41,26 @@ public class UserServiceImpl implements UserService{
 		//}
 	}
 
-	public Optional<User> findById(long id) {
+	public Optional<UserApp> findById(long id) {
 
 		return userRepository.findById(id);
 	}
 
-	public Iterable<User> findAll() {
+	public Iterable<UserApp> findAll() {
 		return userRepository.findAll();
 	}
 	
-	public Iterable<User> findAllAdmins() {
+	public Iterable<UserApp> findAllAdmins() {
 		return userRepository.findByType(UserType.admin);
 	}
 	
 	
-	public Iterable<User> findAllOperators() {
+	public Iterable<UserApp> findAllOperators() {
 		return userRepository.findByType(UserType.operator);
 	}
 
 
-	public void delete(User user) {
+	public void delete(UserApp user) {
 		userRepository.delete(user);
 
 	}

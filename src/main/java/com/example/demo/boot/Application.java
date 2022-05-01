@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
-import com.example.demo.model.User;
+import com.example.demo.model.UserApp;
 import com.example.demo.model.UserType;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.UserServiceImpl;
@@ -19,7 +19,7 @@ import com.example.demo.services.UserServiceImpl;
 @EnableJpaRepositories("com.example.demo.repositories")
 @EnableAutoConfiguration
 @EntityScan(basePackages= {"com.example.demo.model","co.edu.icesi.dev.uccareapp.transport.model.person","co.edu.icesi.dev.uccareapp.transport.model.sales", "co.edu.icesi.dev.uccareapp.transport.model.hr"})
-@ComponentScan(basePackages = {"com.example.demo.repositories","com.example.demo.services"} )
+//@ComponentScan(basePackages = {"com.example.demo.repositories","com.example.demo.services"} )
 public class Application {
 
 	@Bean
@@ -35,19 +35,19 @@ public class Application {
 			//username: user
 			//password: la que salga generada por consola
 			
-	    	User u = new User();
+	    	UserApp u = new UserApp();
 	    	u.setPassword("{noop}1234567");
 	    	u.setType(UserType.admin);
 	    	u.setUsername("peppa1234");
 	    	//u.setOldPassword("{noop}123456789");
 	    	registration.save(u);
 	    	
-	    	
-	    	User u2 = new User();
+	    	UserApp u2 = new UserApp();
 	    	u2.setPassword("{noop}1234");
 	    	u2.setType(UserType.operator);
 	    	u2.setUsername("dora1234");
 	 	    	
+	    	System.out.println(registration.findAll());
 			
 			registration.save(u2);
 		};
@@ -55,6 +55,7 @@ public class Application {
 
 	}
 	
+	@Bean
 	public Java8TimeDialect java8TimeDialect() {
 		return new Java8TimeDialect();
 	}

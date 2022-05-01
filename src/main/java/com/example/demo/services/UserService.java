@@ -2,22 +2,22 @@ package com.example.demo.services;
 
 import java.util.Optional;
 
-import com.example.demo.model.User;
+import com.example.demo.model.UserApp;
 import com.example.demo.model.UserType;
 
 public interface UserService {
 	
-	public void save(User user);
+	public void save(UserApp user);
 
-	public Optional<User> findById(long id);
+	public Optional<UserApp> findById(long id);
 
-	public Iterable<User> findAll();
+	public Iterable<UserApp> findAll();
 
-	public Iterable<User> findAllAdmins();
+	public Iterable<UserApp> findAllAdmins();
 
-	public Iterable<User> findAllOperators();
+	public Iterable<UserApp> findAllOperators();
 
-	public void delete(User user);
+	public void delete(UserApp user);
 
 
 	public UserType[] getTypes();

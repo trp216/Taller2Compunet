@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.UserApp;
 import com.example.demo.repositories.UserRepository;
 
 @Service
@@ -21,9 +22,10 @@ public class MyCustomUserDetailsService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		com.example.demo.model.User userApp = userRepository.findByUsername(username);
+		UserApp userApp = userRepository.findByUsername(username);
+		System.out.println(userApp.toString());
 		if (userApp != null) {
-			org.springframework.security.core.userdetails.User.UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(username).password(userApp.getPassword()).roles(userApp.getType().toString());
+			User.UserBuilder builder = User.withUsername(username).password(userApp.getPassword()).roles(userApp.getType().toString());
 			return builder.build();
 		} else {
 			throw new UsernameNotFoundException("User not found.");

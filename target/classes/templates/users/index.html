@@ -41,8 +41,6 @@
 								<td class="text-info" th:text="${user.password}"></td>
 								<td class="text-info" th:text="${user.type}"></td>
 								
-								<td><a th:href="@{/users/edit/{id}(id=${user.id})}"
-									class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
 								<td><a th:href="@{/users/del/{id}(id=${user.id})}"
 									class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
 							</tr>
@@ -53,10 +51,7 @@
 					<a href="/users/add" class="btn btn-primary"><i
 						class="fas fa-user-plus ml-2"></i></a>
 				</p>
-				<p class="my-5">
-					<a href="/apps/add" class="btn btn-primary"><i
-						class="fas fa-calendar-plus ml-2"></i></a>
-				</p>
+				
 			</div>
 		</div>
 		<a href="/"><i class="fas fa-home ml-2"></i> Go back to main</a>
