@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.services.AddressServiceImp;
 import co.edu.icesi.dev.uccareapp.transport.services.StateprovinceServiceImp;
+import co.edu.icesi.dev.uccareapp.transport.validation.Miracle;
 
 @Controller
 public class AddressControllerImpl {
@@ -45,7 +47,7 @@ public class AddressControllerImpl {
 	}
 
 	@PostMapping("/address/add/")
-	public String saveAddress(@ModelAttribute Address address, BindingResult bindingResult,
+	public String saveAddress(@Validated(Miracle.class) @ModelAttribute Address address, BindingResult bindingResult,
 			Model model, @RequestParam(value = "action", required = true) String action) {
 		if (!action.equals("Cancel")) {
 			model.addAttribute("address", address);

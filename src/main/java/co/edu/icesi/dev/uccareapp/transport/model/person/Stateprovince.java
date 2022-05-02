@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -39,6 +40,7 @@ public class Stateprovince implements Serializable {
 	private Integer rowguid;
 
 	@Size(min=5,max=5)
+	@Pattern(regexp="^(0|[1-9][0-9]*)$")
 	private String stateprovincecode;
 
 	private Integer territoryid;

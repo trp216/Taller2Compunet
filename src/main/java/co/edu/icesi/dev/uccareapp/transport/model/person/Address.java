@@ -17,6 +17,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import co.edu.icesi.dev.uccareapp.transport.validation.Miracle;
+
 /**
  * The persistent class for the address database table.
  *
@@ -31,17 +33,17 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_ADDRESSID_GENERATOR")
 	private Integer addressid;
 
-	@NotBlank
+	@NotBlank(groups=Miracle.class)
 	private String addressline1;
 
 	private String addressline2;
 
-	@Size(min=3)
+	@Size(min=3,groups=Miracle.class)
 	private String city;
 
 	private Timestamp modifieddate;
 
-	@Size(min=6,max=6)
+	@Size(min=6,max=6,groups=Miracle.class)
 	private String postalcode;
 
 	private Integer rowguid;
@@ -49,7 +51,7 @@ public class Address implements Serializable {
 	private String spatiallocation;
 
 	// bi-directional many-to-one association to Stateprovince
-	@NotNull
+	@NotNull(groups=Miracle.class)
 	@ManyToOne
 	@JoinColumn(name = "stateprovinceid")
 	private Stateprovince stateprovince;
