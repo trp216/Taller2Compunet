@@ -37,8 +37,9 @@
 						<tbody>
 							<tr th:each="tax : ${taxes}">
 								<td th:text="${tax.salestaxrateid}"></td>
-								<td th:text="${tax.taxrate}"></td>
 								<td th:text="${tax.name}"></td>
+								<td th:text="${tax.taxrate}"></td>
+								<td th:text="${tax.taxtype}"></td>
 								<td th:text="${tax.stateprovince.name}"></td>
 								
 								

@@ -1,5 +1,7 @@
 package co.edu.icesi.dev.uccareapp.transport;
 
+import java.math.BigDecimal;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -12,9 +14,11 @@ import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
 import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
+import co.edu.icesi.dev.uccareapp.transport.model.sales.Salestaxrate;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserType;
 import co.edu.icesi.dev.uccareapp.transport.repositories.AddressRepository;
+import co.edu.icesi.dev.uccareapp.transport.repositories.SalestaxrateRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.UserRepository;
 import co.edu.icesi.dev.uccareapp.transport.services.UserServiceImpl;
@@ -31,6 +35,7 @@ public class Application {
 	public CommandLineRunner dummy(UserRepository userRepository
 			,AddressRepository addressRepository, 
 			StateprovinceRepository stateprovinceRepository 
+			,SalestaxrateRepository strRepository
 			) {
 
 		//para cerrar sesion:
@@ -71,6 +76,13 @@ public class Application {
 	    	a1.setStateprovince(sp1);
 	    	
 	    	addressRepository.save(a1);
+	    	
+	    	Salestaxrate str = new Salestaxrate();
+	    	str.setName("Aranceles");
+	    	str.setTaxrate(new BigDecimal(15));
+	    	str.setStateprovince(sp1);
+	    	
+	    	strRepository.save(str);
 	    	
 	    	
 	    	//System.out.println(userRepository.findAll());
