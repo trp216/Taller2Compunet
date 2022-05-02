@@ -52,7 +52,7 @@
 								th:field="*{countryregion}">
 								<option th:each="co : ${countryregions}" th:value="${co.countryregionid}"
 									class="form-control" th:text="${co.name}"
-									></option>
+									th:selected="${stateprovince.countryregion=co}"></option>
 							</select> <span th:if="${#fields.hasErrors('countryregion')}"
 								th:errors="*{countryregion}" class="text-danger"></span>
 					</div>
