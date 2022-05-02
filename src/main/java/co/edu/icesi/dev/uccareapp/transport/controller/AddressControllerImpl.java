@@ -53,7 +53,7 @@ public class AddressControllerImpl {
 			model.addAttribute("address", address);
 
 			if (bindingResult.hasErrors()) {
-				model.addAttribute("provinces", spService.findAll());
+				model.addAttribute("stateprovinces", spService.findAll());
 
 
 				return "/address/add-address";

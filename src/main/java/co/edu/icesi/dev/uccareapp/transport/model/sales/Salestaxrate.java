@@ -47,7 +47,7 @@ public class Salestaxrate implements Serializable {
 	private Stateprovince stateprovince;
 
 	@PositiveOrZero(groups=Miracle.class)
-	@Pattern(regexp="^(0|[1-9][0-9]*)$",groups=Miracle.class)
+	//@Pattern(regexp="^(0|[1-9][0-9]*)$",groups=Miracle.class)
 	private BigDecimal taxrate;
 
 	private Integer taxtype;

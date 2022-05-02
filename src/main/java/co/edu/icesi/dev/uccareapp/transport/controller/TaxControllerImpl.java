@@ -40,6 +40,7 @@ public class TaxControllerImpl {
 	public String addTax(Model model) {
 		model.addAttribute("tax", new Salestaxrate());
 		model.addAttribute("stateprovinces", spService.findAll());
+		//System.out.println(spService.findAll());
 
 		return "tax/add-tax";
 	}
@@ -51,7 +52,7 @@ public class TaxControllerImpl {
 			model.addAttribute("tax", str);
 
 			if (bindingResult.hasErrors()) {
-				model.addAttribute("provinces", spService.findAll());
+				model.addAttribute("stateprovinces", spService.findAll());
 
 
 				return "/tax/add-tax";
