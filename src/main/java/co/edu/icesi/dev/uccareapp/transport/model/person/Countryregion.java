@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Size;
 
+import co.edu.icesi.dev.uccareapp.transport.validation.Miracle;
+
 /**
  * The persistent class for the countryregion database table.
  *
@@ -35,12 +37,12 @@ public class Countryregion implements Serializable {
 		this.countryregionid = countryregionid;
 	}
 
-	@Size(min=1,max=4)
+	@Size(min=1,max=4, groups=Miracle.class)
 	private String countryregioncode;
 
 	private Timestamp modifieddate;
 
-	@Size(min=5)
+	@Size(min=5, groups=Miracle.class)
 	private String name;
 
 	// bi-directional many-to-one association to Stateprovince

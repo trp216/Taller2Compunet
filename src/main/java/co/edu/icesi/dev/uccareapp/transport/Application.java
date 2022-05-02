@@ -13,11 +13,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
 import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
+import co.edu.icesi.dev.uccareapp.transport.model.person.Countryregion;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
 import co.edu.icesi.dev.uccareapp.transport.model.sales.Salestaxrate;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserType;
 import co.edu.icesi.dev.uccareapp.transport.repositories.AddressRepository;
+import co.edu.icesi.dev.uccareapp.transport.repositories.CountryregionRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.SalestaxrateRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.UserRepository;
@@ -36,6 +38,7 @@ public class Application {
 			,AddressRepository addressRepository, 
 			StateprovinceRepository stateprovinceRepository 
 			,SalestaxrateRepository strRepository
+			,CountryregionRepository crRepository
 			) {
 
 		//para cerrar sesion:
@@ -83,6 +86,12 @@ public class Application {
 	    	str.setStateprovince(sp1);
 	    	
 	    	strRepository.save(str);
+	    	
+	    	Countryregion cr = new Countryregion();
+	    	cr.setName("Colombia");
+	    	cr.setCountryregioncode("C12");
+	    	
+	    	crRepository.save(cr);
 	    	
 	    	
 	    	//System.out.println(userRepository.findAll());

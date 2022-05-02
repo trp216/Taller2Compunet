@@ -1,8 +1,8 @@
 package co.edu.icesi.dev.uccareapp.transport.services;
 
 import co.edu.icesi.dev.uccareapp.transport.exception.FailedValidationsException;
+import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Countryregion;
-import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
 
 public interface CountryregionService {
 	
@@ -10,4 +10,7 @@ public interface CountryregionService {
 	
 	public Countryregion editCountryRegion(Countryregion cr) throws FailedValidationsException;
 	
+	public Iterable<Countryregion> findAll();
+	
+	public void save(Countryregion cr);
 }

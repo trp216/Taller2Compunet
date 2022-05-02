@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import co.edu.icesi.dev.uccareapp.transport.exception.FailedValidationsException;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Countryregion;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
+import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.repositories.CountryregionRepository;
 
 @Service
@@ -60,5 +61,16 @@ public class CountryregionServiceImp implements CountryregionService{
 	public Optional<Countryregion> findById(Integer id) {
 		return repo.findById(id);
 	}
+	
+	@Override
+	public Iterable<Countryregion> findAll() {
+		return repo.findAll();
+	}
 
+	@Transactional
+	public void save(Countryregion cr) {
+//	
+		repo.save(cr);
+		//}
+	}
 }
