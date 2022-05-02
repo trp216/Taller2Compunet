@@ -8,11 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
+
+import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
+import co.edu.icesi.dev.uccareapp.transport.validation.Miracle;
 
 /**
  * The persistent class for the salestaxrate database table.
@@ -30,15 +36,18 @@ public class Salestaxrate implements Serializable {
 
 	private Timestamp modifieddate;
 
-	@Size(min=5)
+	@Size(min=5,groups=Miracle.class)
 	private String name;
 
 	private Integer rowguid;
 
-	@NotNull
-	private Integer stateprovinceid;
+	@NotNull(groups = Miracle.class)
+	@ManyToOne
+	@JoinColumn(name = "stateprovinceid")
+	private Stateprovince stateprovince;
 
-	@PositiveOrZero
+	@PositiveOrZero(groups=Miracle.class)
+	@Pattern(regexp="^(0|[1-9][0-9]*)$",groups=Miracle.class)
 	private BigDecimal taxrate;
 
 	private Integer taxtype;
@@ -62,8 +71,8 @@ public class Salestaxrate implements Serializable {
 		return this.salestaxrateid;
 	}
 
-	public Integer getStateprovinceid() {
-		return this.stateprovinceid;
+	public Stateprovince getStateprovince() {
+		return this.stateprovince;
 	}
 
 	public BigDecimal getTaxrate() {
@@ -90,8 +99,8 @@ public class Salestaxrate implements Serializable {
 		this.salestaxrateid = salestaxrateid;
 	}
 
-	public void setStateprovinceid(Integer stateprovinceid) {
-		this.stateprovinceid = stateprovinceid;
+	public void setStateprovince(Stateprovince stateprovince) {
+		this.stateprovince = stateprovince;
 	}
 
 	public void setTaxrate(BigDecimal taxrate) {

@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import co.edu.icesi.dev.uccareapp.transport.exception.ElementNotFoundException;
 import co.edu.icesi.dev.uccareapp.transport.exception.FailedValidationsException;
+import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
 import co.edu.icesi.dev.uccareapp.transport.model.sales.Salestaxrate;
+import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.repositories.SalestaxrateRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository;
 
@@ -32,24 +34,24 @@ public class SalestaxrateServiceImp implements SalestaxrateService{
 	@Override
 	public Salestaxrate saveSalestaxrate(Salestaxrate str, int stateprovinceid) throws FailedValidationsException, ElementNotFoundException {
 		Salestaxrate result  = null;
-		
-		if(str.getName()==null || str.getName().isBlank() || str.getName().length()<5) {
-			throw new FailedValidationsException("El nombre debe tener al menos 5 caracteres");
-		}
-		else if(str.getTaxrate().signum()<0) {
-			throw new FailedValidationsException("La tasa no debe ser negativa");
-			
-		}
-		else {
-			Optional<Stateprovince> opt1 = this.spRepo.findById(stateprovinceid);
-			if(opt1.isPresent()) {
-				str.setStateprovinceid(stateprovinceid);
-				result = this.repo.save(str);
-			}else {
-				throw new ElementNotFoundException("El estado provincia no existe");
-			}
-		}
-		
+//		
+//		if(str.getName()==null || str.getName().isBlank() || str.getName().length()<5) {
+//			throw new FailedValidationsException("El nombre debe tener al menos 5 caracteres");
+//		}
+//		else if(str.getTaxrate().signum()<0) {
+//			throw new FailedValidationsException("La tasa no debe ser negativa");
+//			
+//		}
+//		else {
+//			Optional<Stateprovince> opt1 = this.spRepo.findById(stateprovinceid);
+//			if(opt1.isPresent()) {
+//				str.setStateprovinceid(stateprovinceid);
+//				result = this.repo.save(str);
+//			}else {
+//				throw new ElementNotFoundException("El estado provincia no existe");
+//			}
+//		}
+//		
 		return result;
 	}
 
@@ -70,6 +72,17 @@ public class SalestaxrateServiceImp implements SalestaxrateService{
 		return repo.findById(id);
 	}
 
-	
+	public Iterable<Salestaxrate> findAll() {
+		return repo.findAll();
+	}
 
+	@Override
+	@Transactional
+	public void save(Salestaxrate str) {
+
+		repo.save(str);
+		
+	}
+
+	
 }
