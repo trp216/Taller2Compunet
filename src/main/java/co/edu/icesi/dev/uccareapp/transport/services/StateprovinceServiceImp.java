@@ -14,6 +14,7 @@ import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Countryregion;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
 import co.edu.icesi.dev.uccareapp.transport.model.sales.Salesterritory;
+import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.repositories.CountryregionRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.SalesTerritoryRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository;
@@ -92,6 +93,10 @@ public class StateprovinceServiceImp implements StateprovinceService{
 
 	public Optional<Stateprovince> findById(Integer id) {
 		return repo.findById(id);
+	}
+	
+	public Iterable<Stateprovince> findAll() {
+		return repo.findAll();
 	}
 
 }

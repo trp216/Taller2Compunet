@@ -63,7 +63,7 @@
 							<label for="stateprovince" class="col-form-label">State-province</label> <select 
 							th:field="*{stateprovince}">
 							<option class="form-control" th:each="st : ${stateprovinces}"
-							th:text="${st.stateprovincecode}" th:selected="${address.stateprovince=st}"
+							th:text="${st.name}" th:selected="${address.stateprovince=st}"
 							th:value="${st.stateprovinceid}"></option></select>
 							<span
 								th:if="${#fields.hasErrors('stateprovince')}" th:errors="*{stateprovince}"

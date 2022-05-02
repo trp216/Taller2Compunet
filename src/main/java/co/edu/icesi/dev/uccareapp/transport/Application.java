@@ -58,7 +58,7 @@ public class Application {
 	    	
 	    	Stateprovince sp1 = new Stateprovince();
 	    	sp1.setName("Valle del Cauca");
-	    	sp1.setStateprovincecode("SP123");
+	    	sp1.setStateprovincecode("12345");
 	    	
 	    	stateprovinceRepository.save(sp1);
 	    	

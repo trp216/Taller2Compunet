@@ -13,17 +13,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.services.AddressServiceImp;
+import co.edu.icesi.dev.uccareapp.transport.services.StateprovinceServiceImp;
 
 @Controller
 public class AddressControllerImpl {
 	
 	AddressServiceImp addressService;
+	StateprovinceServiceImp spService;
 
 	@Autowired
-	public AddressControllerImpl(AddressServiceImp addressService) {
-		this.addressService = addressService;
-	}
+	public AddressControllerImpl(AddressServiceImp addressService, StateprovinceServiceImp spService) {
 	
+		this.addressService = addressService;
+		this.spService = spService;
+	}
+
+
+
 	@GetMapping("/address/")
 	public String indexAddress(Model model) {
 		model.addAttribute("addresses", addressService.findAll());
@@ -33,6 +39,7 @@ public class AddressControllerImpl {
 	@GetMapping("/address/add")
 	public String addAddress(Model model) {
 		model.addAttribute("address", new Address());
+		model.addAttribute("stateprovinces", spService.findAll());
 
 		return "address/add-address";
 	}
@@ -44,6 +51,8 @@ public class AddressControllerImpl {
 			model.addAttribute("address", address);
 
 			if (bindingResult.hasErrors()) {
+				model.addAttribute("provinces", spService.findAll());
+
 
 				return "/address/add-address";
 
