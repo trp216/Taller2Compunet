@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//y los estados-provincias
 		.antMatchers("/users/**").permitAll()
 		.antMatchers("/countryregion/**").hasRole("admin")
-		.antMatchers("/tex/**").hasRole("admin")
+		.antMatchers("/tax/**").hasRole("admin")
 		//.antMatchers("/users/**").hasRole("operator")
 		.antMatchers("/address/**").hasRole("operator")
 		.antMatchers("/stateprovince/**").hasRole("operator")

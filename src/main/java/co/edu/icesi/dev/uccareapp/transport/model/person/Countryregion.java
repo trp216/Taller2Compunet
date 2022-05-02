@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Size;
 
 /**
  * The persistent class for the countryregion database table.
@@ -34,10 +35,12 @@ public class Countryregion implements Serializable {
 		this.countryregionid = countryregionid;
 	}
 
+	@Size(min=1,max=4)
 	private String countryregioncode;
 
 	private Timestamp modifieddate;
 
+	@Size(min=5)
 	private String name;
 
 	// bi-directional many-to-one association to Stateprovince

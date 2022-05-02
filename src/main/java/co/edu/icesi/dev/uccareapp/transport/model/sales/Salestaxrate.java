@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 /**
  * The persistent class for the salestaxrate database table.
@@ -27,12 +30,15 @@ public class Salestaxrate implements Serializable {
 
 	private Timestamp modifieddate;
 
+	@Size(min=5)
 	private String name;
 
 	private Integer rowguid;
 
+	@NotNull
 	private Integer stateprovinceid;
 
+	@PositiveOrZero
 	private BigDecimal taxrate;
 
 	private Integer taxtype;

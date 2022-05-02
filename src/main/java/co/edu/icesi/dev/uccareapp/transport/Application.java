@@ -10,8 +10,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
+import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
+import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserType;
+import co.edu.icesi.dev.uccareapp.transport.repositories.AddressRepository;
+import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.UserRepository;
 import co.edu.icesi.dev.uccareapp.transport.services.UserServiceImpl;
 
@@ -24,7 +28,10 @@ public class Application {
 
 	@Bean
 
-	public CommandLineRunner dummy(UserRepository userRepository) {
+	public CommandLineRunner dummy(UserRepository userRepository
+			,AddressRepository addressRepository, 
+			StateprovinceRepository stateprovinceRepository 
+			) {
 
 		//para cerrar sesion:
 		//http://localhost:8081/logout
@@ -47,10 +54,26 @@ public class Application {
 	    	u2.setType(UserType.operator);
 	    	u2.setUsername("dora1234");
 	 	    	
-	    	
-			
 	    	userRepository.save(u2);
-	    	System.out.println(userRepository.findAll());
+	    	
+	    	Stateprovince sp1 = new Stateprovince();
+	    	sp1.setName("Valle del Cauca");
+	    	sp1.setStateprovincecode("SP123");
+	    	
+	    	stateprovinceRepository.save(sp1);
+	    	
+	    	Address a1 = new Address();
+	    	a1.setAddressline1("Line 1 of address");
+	    	a1.setCity("Cali");
+	    	a1.setAddressline2("Line 2 of address");
+	    	a1.setPostalcode("A12345");
+	    	a1.setSpatiallocation("Comuna 2");
+	    	a1.setStateprovince(sp1);
+	    	
+	    	addressRepository.save(a1);
+	    	
+	    	
+	    	//System.out.println(userRepository.findAll());
 		};
 
 

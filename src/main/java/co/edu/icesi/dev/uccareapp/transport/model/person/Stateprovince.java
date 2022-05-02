@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Size;
 
 /**
  * The persistent class for the stateprovince database table.
@@ -32,10 +33,12 @@ public class Stateprovince implements Serializable {
 
 	private Timestamp modifieddate;
 
+	@Size(min=5)
 	private String name;
 
 	private Integer rowguid;
 
+	@Size(min=5,max=5)
 	private String stateprovincecode;
 
 	private Integer territoryid;

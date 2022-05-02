@@ -13,6 +13,7 @@ import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Countryregion;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
 import co.edu.icesi.dev.uccareapp.transport.model.sales.Salesterritory;
+import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.repositories.AddressRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository;
 
@@ -74,6 +75,18 @@ public class AddressServiceImp implements AddressService{
 	
 	public Optional<Address> findById(Integer id) {
 		return repo.findById(id);
+	}
+
+	@Override
+	public Iterable<Address> findAll() {
+		return repo.findAll();
+	}
+	
+	@Transactional
+	public void save(Address address) {
+
+		repo.save(address);
+		
 	}
 
 }
