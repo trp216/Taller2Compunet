@@ -17,12 +17,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.example.demo.boot.Application;
-import com.example.demo.exception.FailedValidationsException;
-import com.example.demo.repositories.CountryregionRepository;
-import com.example.demo.services.CountryregionServiceImp;
-
+import co.edu.icesi.dev.uccareapp.transport.Application;
+import co.edu.icesi.dev.uccareapp.transport.exception.FailedValidationsException;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Countryregion;
+import co.edu.icesi.dev.uccareapp.transport.repositories.CountryregionRepository;
+import co.edu.icesi.dev.uccareapp.transport.services.CountryregionServiceImp;
 
 //@SpringBootTest
 @ContextConfiguration(classes = Application.class)

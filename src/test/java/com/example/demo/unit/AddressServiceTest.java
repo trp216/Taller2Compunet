@@ -26,18 +26,17 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.example.demo.boot.Application;
-import com.example.demo.exception.ElementNotFoundException;
-import com.example.demo.exception.FailedValidationsException;
-import com.example.demo.repositories.AddressRepository;
-import com.example.demo.repositories.StateprovinceRepository;
-import com.example.demo.services.AddressService;
-import com.example.demo.services.AddressServiceImp;
-import com.example.demo.services.StateprovinceServiceImp;
-
+import co.edu.icesi.dev.uccareapp.transport.Application;
+import co.edu.icesi.dev.uccareapp.transport.exception.ElementNotFoundException;
+import co.edu.icesi.dev.uccareapp.transport.exception.FailedValidationsException;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Countryregion;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
+import co.edu.icesi.dev.uccareapp.transport.repositories.AddressRepository;
+import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository;
+import co.edu.icesi.dev.uccareapp.transport.services.AddressService;
+import co.edu.icesi.dev.uccareapp.transport.services.AddressServiceImp;
+import co.edu.icesi.dev.uccareapp.transport.services.StateprovinceServiceImp;
 
 //@SpringBootTest
 @ContextConfiguration

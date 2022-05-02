@@ -24,29 +24,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.example.demo.boot.Application;
-import com.example.demo.exception.ElementNotFoundException;
-import com.example.demo.exception.FailedValidationsException;
-import com.example.demo.repositories.AddressRepository;
-import com.example.demo.repositories.CountryregionRepository;
-import com.example.demo.repositories.SalesTerritoryRepository;
-import com.example.demo.repositories.SalestaxrateRepository;
-import com.example.demo.repositories.StateprovinceRepository;
-import com.example.demo.services.AddressService;
-import com.example.demo.services.AddressServiceImp;
-import com.example.demo.services.CountryregionService;
-import com.example.demo.services.CountryregionServiceImp;
-import com.example.demo.services.SalesTerritoryService;
-import com.example.demo.services.SalestaxrateService;
-import com.example.demo.services.SalestaxrateServiceImp;
-import com.example.demo.services.StateprovinceService;
-import com.example.demo.services.StateprovinceServiceImp;
-
+import co.edu.icesi.dev.uccareapp.transport.Application;
+import co.edu.icesi.dev.uccareapp.transport.exception.ElementNotFoundException;
+import co.edu.icesi.dev.uccareapp.transport.exception.FailedValidationsException;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Countryregion;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
 import co.edu.icesi.dev.uccareapp.transport.model.sales.Salestaxrate;
 import co.edu.icesi.dev.uccareapp.transport.model.sales.Salesterritory;
+import co.edu.icesi.dev.uccareapp.transport.repositories.AddressRepository;
+import co.edu.icesi.dev.uccareapp.transport.repositories.CountryregionRepository;
+import co.edu.icesi.dev.uccareapp.transport.repositories.SalesTerritoryRepository;
+import co.edu.icesi.dev.uccareapp.transport.repositories.SalestaxrateRepository;
+import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository;
+import co.edu.icesi.dev.uccareapp.transport.services.AddressService;
+import co.edu.icesi.dev.uccareapp.transport.services.AddressServiceImp;
+import co.edu.icesi.dev.uccareapp.transport.services.CountryregionService;
+import co.edu.icesi.dev.uccareapp.transport.services.CountryregionServiceImp;
+import co.edu.icesi.dev.uccareapp.transport.services.SalesTerritoryService;
+import co.edu.icesi.dev.uccareapp.transport.services.SalestaxrateService;
+import co.edu.icesi.dev.uccareapp.transport.services.SalestaxrateServiceImp;
+import co.edu.icesi.dev.uccareapp.transport.services.StateprovinceService;
+import co.edu.icesi.dev.uccareapp.transport.services.StateprovinceServiceImp;
 
 @ContextConfiguration(classes = Application.class)
 @ExtendWith(SpringExtension.class)

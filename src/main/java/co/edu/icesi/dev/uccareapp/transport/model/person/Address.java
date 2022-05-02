@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * The persistent class for the address database table.
@@ -28,14 +31,17 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_ADDRESSID_GENERATOR")
 	private Integer addressid;
 
+	@NotBlank
 	private String addressline1;
 
 	private String addressline2;
 
+	@Size(min=3)
 	private String city;
 
 	private Timestamp modifieddate;
 
+	@Size(min=6,max=6)
 	private String postalcode;
 
 	private Integer rowguid;
@@ -43,6 +49,7 @@ public class Address implements Serializable {
 	private String spatiallocation;
 
 	// bi-directional many-to-one association to Stateprovince
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "stateprovinceid")
 	private Stateprovince stateprovince;
