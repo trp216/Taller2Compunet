@@ -16,12 +16,12 @@ import co.edu.icesi.dev.uccareapp.transport.services.CountryregionServiceImp;
 import co.edu.icesi.dev.uccareapp.transport.validation.Miracle;
 
 @Controller
-public class CountryregionController {
+public class CountryregionControllerImpl {
 	
 	CountryregionServiceImp crService;
 
 	@Autowired
-	public CountryregionController(CountryregionServiceImp crService) {
+	public CountryregionControllerImpl(CountryregionServiceImp crService) {
 		super();
 		this.crService = crService;
 	}

@@ -98,5 +98,12 @@ public class StateprovinceServiceImp implements StateprovinceService{
 	public Iterable<Stateprovince> findAll() {
 		return repo.findAll();
 	}
+	
+	@Override
+	@Transactional
+	public void save(Stateprovince sp) {
+
+		repo.save(sp);
+	}
 
 }

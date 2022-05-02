@@ -27,5 +27,9 @@ public class SalesTerritoryService {
 	public Optional<Salesterritory> findById(Integer id) {
 		return repo.findById(id);
 	}
+	
+	public Iterable<Salesterritory> findAll() {
+		return repo.findAll();
+	}
 
 }

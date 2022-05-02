@@ -16,10 +16,12 @@ import co.edu.icesi.dev.uccareapp.transport.model.person.Address;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Countryregion;
 import co.edu.icesi.dev.uccareapp.transport.model.person.Stateprovince;
 import co.edu.icesi.dev.uccareapp.transport.model.sales.Salestaxrate;
+import co.edu.icesi.dev.uccareapp.transport.model.sales.Salesterritory;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserApp;
 import co.edu.icesi.dev.uccareapp.transport.model.user.UserType;
 import co.edu.icesi.dev.uccareapp.transport.repositories.AddressRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.CountryregionRepository;
+import co.edu.icesi.dev.uccareapp.transport.repositories.SalesTerritoryRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.SalestaxrateRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository;
 import co.edu.icesi.dev.uccareapp.transport.repositories.UserRepository;
@@ -39,6 +41,7 @@ public class Application {
 			StateprovinceRepository stateprovinceRepository 
 			,SalestaxrateRepository strRepository
 			,CountryregionRepository crRepository
+			,SalesTerritoryRepository territoryRepository
 			) {
 
 		//para cerrar sesion:
@@ -64,9 +67,24 @@ public class Application {
 	 	    	
 	    	userRepository.save(u2);
 	    	
+
+	    	Countryregion cr = new Countryregion();
+	    	cr.setName("Colombia");
+	    	cr.setCountryregioncode("C12");
+	    	
+	    	crRepository.save(cr);
+	    	
+	    	Salesterritory territory = new Salesterritory();
+	    	territory.setName("Zona del pacifico");
+	    	
+	    	territoryRepository.save(territory);
+	    	
+	    	
 	    	Stateprovince sp1 = new Stateprovince();
 	    	sp1.setName("Valle del Cauca");
 	    	sp1.setStateprovincecode("12345");
+	    	sp1.setCountryregion(cr);
+	    	sp1.setTerritoryid(territory.getTerritoryid());
 	    	
 	    	stateprovinceRepository.save(sp1);
 	    	
@@ -87,11 +105,6 @@ public class Application {
 	    	
 	    	strRepository.save(str);
 	    	
-	    	Countryregion cr = new Countryregion();
-	    	cr.setName("Colombia");
-	    	cr.setCountryregioncode("C12");
-	    	
-	    	crRepository.save(cr);
 	    	
 	    	
 	    	//System.out.println(userRepository.findAll());
