@@ -78,8 +78,8 @@ public class CountryregionServiceImp implements CountryregionService{
 		Countryregion actual = null;
 
 		if(countryregion.getCountryregionid() != null) {
-			Optional<Countryregion> optinalEntity = repo.findById(countryregion.getCountryregionid());
-			if(optinalEntity.isPresent()) {
+			Optional<Countryregion> optional = repo.findById(countryregion.getCountryregionid());
+			if(optional.isPresent()) {
 				save(countryregion);
 				actual = findById(countryregion.getCountryregionid()).get();
 			}

@@ -65,6 +65,36 @@ public class AddressControllerImpl {
 		return "redirect:/address/";
 	}
 	
+	@GetMapping("/address/edit/{id}")
+	public String showEditAddress(@PathVariable("id") Integer id,Model model) {
+		Address address = addressService.findById(id).get();
+		if (address == null)
+			throw new IllegalArgumentException("Invalid country Id:" + id);
+		
+		model.addAttribute("address", address);
+		model.addAttribute("provinces", spService.findAll());
+		return "address/edit-address";
+	}
 	
+	@PostMapping("/address/edit/{id}")
+	public String editAddress(@PathVariable("id") Integer id, @RequestParam(value = "action", required = true) 
+	String action,@Validated(Miracle.class) @ModelAttribute Address address, BindingResult bindingResult, Model model) {
+		
+		if(action.equals("Cancel")) {
+			return "redirect:/address/";
+		}
+		
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("addresses", addressService.findAll());
+			
+			return "address/index";
+		}
+		if (!action.equals("Cancel")) {
+			address.setAddressid(id);
+			addressService.edit(address,address.getStateprovince().getStateprovinceid());
+			model.addAttribute("provinces", spService.findAll());
+		}
+		return "redirect:/address/";
+	}
 
 }

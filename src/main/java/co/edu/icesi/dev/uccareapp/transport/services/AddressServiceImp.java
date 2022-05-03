@@ -89,5 +89,21 @@ public class AddressServiceImp implements AddressService{
 		repo.save(address);
 		
 	}
+	
+	public Address edit(Address address, Integer stateprovinceid) {
+		Address actual = null;
+		
+		if(address.getAddressid() != null) {
+			Optional<Address> optional = repo.findById(address.getAddressid());
+			if(optional.isPresent()) {
+				address.setStateprovince(spRepo.findById(stateprovinceid).get());
+				save(address);
+				actual = findById(address.getAddressid()).get();
+			}
+		}
+		System.out.println(actual.toString());
+		return actual;
+		
+	}
 
 }

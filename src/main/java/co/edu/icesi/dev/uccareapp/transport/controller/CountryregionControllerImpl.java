@@ -73,7 +73,7 @@ public class CountryregionControllerImpl {
 	public String editCountryregion(@Validated(Miracle.class) @ModelAttribute Countryregion countryregion, BindingResult bindingResult,
 			Model model,@PathVariable("id") Integer id, @RequestParam(value = "action", required = true) String action) {
 		
-		if (action.equals("Cancelar")) {
+		if (action.equals("Cancel")) {
 			return "redirect:/countryregion/";
 		}
 		
