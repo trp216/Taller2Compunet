@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -53,6 +54,37 @@ public class CountryregionControllerImpl {
 			}
 
 			crService.save(countryregion);
+		}
+		return "redirect:/countryregion/";
+	}
+	
+	@GetMapping("/countryregion/edit/{id}")
+	public String showEditCountryregion(@PathVariable("id") Integer id,Model model) {
+		Countryregion countryregion = crService.findById(id).get();
+		
+		if (countryregion == null)
+			throw new IllegalArgumentException("Invalid country Id:" + id);
+		
+		model.addAttribute("countryregion", countryregion);
+		return "countryregion/edit-countryregion";
+	}
+	
+	@PostMapping("/countryregion/edit/{id}")
+	public String editCountryregion(@Validated(Miracle.class) @ModelAttribute Countryregion countryregion, BindingResult bindingResult,
+			Model model,@PathVariable("id") Integer id, @RequestParam(value = "action", required = true) String action) {
+		
+		if (action.equals("Cancelar")) {
+			return "redirect:/countryregion/";
+		}
+		
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("countries", crService.findAll());
+			return "countryregion/index";
+		}
+		if (!action.equalsIgnoreCase("Cancel")) {
+			countryregion.setCountryregionid(id);
+			crService.edit(countryregion);
+			model.addAttribute("countries", crService.findAll());
 		}
 		return "redirect:/countryregion/";
 	}

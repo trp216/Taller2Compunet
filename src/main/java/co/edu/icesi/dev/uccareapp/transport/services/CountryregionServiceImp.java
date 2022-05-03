@@ -51,7 +51,7 @@ public class CountryregionServiceImp implements CountryregionService{
 			Optional<Countryregion> old = repo.findById(cr.getCountryregionid());
 			if(old.isPresent()) {
 				result = saveCountryRegion(cr);
-				
+
 			}
 		}
 
@@ -61,7 +61,7 @@ public class CountryregionServiceImp implements CountryregionService{
 	public Optional<Countryregion> findById(Integer id) {
 		return repo.findById(id);
 	}
-	
+
 	@Override
 	public Iterable<Countryregion> findAll() {
 		return repo.findAll();
@@ -69,8 +69,22 @@ public class CountryregionServiceImp implements CountryregionService{
 
 	@Transactional
 	public void save(Countryregion cr) {
-//	
+		//	
 		repo.save(cr);
 		//}
+	}
+
+	public Countryregion edit(Countryregion countryregion) {
+		Countryregion actual = null;
+
+		if(countryregion.getCountryregionid() != null) {
+			Optional<Countryregion> optinalEntity = repo.findById(countryregion.getCountryregionid());
+			if(optinalEntity.isPresent()) {
+				save(countryregion);
+				actual = findById(countryregion.getCountryregionid()).get();
+			}
+		}
+
+		return actual;
 	}
 }
