@@ -106,4 +106,20 @@ public class StateprovinceServiceImp implements StateprovinceService{
 		repo.save(sp);
 	}
 
+	@Transactional
+	public Stateprovince edit(Stateprovince sp, Integer countryregionid) {
+		Stateprovince actual = null;
+		
+		if(sp.getStateprovinceid() != null) {
+			Optional<Stateprovince> optional = repo.findById(sp.getStateprovinceid());
+			if(optional.isPresent()) {
+				sp.setCountryregion(crRepo.findById(countryregionid).get());
+				save(sp);
+				actual = findById(sp.getStateprovinceid()).get();
+			}
+		}
+		
+		return actual;
+		
+	}
 }

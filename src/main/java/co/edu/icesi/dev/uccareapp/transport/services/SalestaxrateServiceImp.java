@@ -84,6 +84,7 @@ public class SalestaxrateServiceImp implements SalestaxrateService{
 
 	}
 
+	@Transactional
 	public Salestaxrate edit(Salestaxrate tax, Integer stateprovinceid) {
 
 		Salestaxrate actual = null;

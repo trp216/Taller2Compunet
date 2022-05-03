@@ -74,6 +74,7 @@ public class CountryregionServiceImp implements CountryregionService{
 		//}
 	}
 
+	@Transactional
 	public Countryregion edit(Countryregion countryregion) {
 		Countryregion actual = null;
 

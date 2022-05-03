@@ -90,6 +90,7 @@ public class AddressServiceImp implements AddressService{
 		
 	}
 	
+	@Transactional
 	public Address edit(Address address, Integer stateprovinceid) {
 		Address actual = null;
 		

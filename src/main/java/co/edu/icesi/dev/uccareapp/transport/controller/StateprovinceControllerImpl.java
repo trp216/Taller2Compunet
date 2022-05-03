@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -67,6 +68,38 @@ public class StateprovinceControllerImpl {
 			}
 
 			spService.save(sp);
+		}
+		return "redirect:/stateprovince/";
+	}
+	
+	@GetMapping("/stateprovince/edit/{id}")
+	public String showEditProvince(@PathVariable("id") Integer id,Model model) {
+		Stateprovince stateprovince = spService.findById(id).get();
+		if (stateprovince == null)
+			throw new IllegalArgumentException("Invalid country Id:" + id);
+		
+		model.addAttribute("stateprovince", stateprovince);
+		model.addAttribute("countries", crService.findAll());
+		return "stateprovince/edit-stateprovince";
+	}
+	
+	@PostMapping("/stateprovince/edit/{id}")
+	public String updateProvince(@PathVariable("id") Integer id, @RequestParam(value = "action", required = true) 
+	String action, @Validated(Miracle.class) @ModelAttribute Stateprovince stateprovince, BindingResult bindingResult, Model model) {
+		
+		if(action.equals("Cancel")) {
+			return "redirect:/stateprovince/";
+		}
+		
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("stateprovince", spService.findAll());
+			
+			return "stateprovince/index";
+		}
+		if (action != null && !action.equals("Cancel")) {
+			stateprovince.setStateprovinceid(id);
+			spService.edit(stateprovince,stateprovince.getCountryregion().getCountryregionid());
+			model.addAttribute("stateprovinces", spService.findAll());
 		}
 		return "redirect:/stateprovince/";
 	}
