@@ -21,9 +21,9 @@ import co.edu.icesi.dev.uccareapp.transport.repositories.StateprovinceRepository
 public class SalestaxrateServiceImp implements SalestaxrateService{
 
 	private SalestaxrateRepository repo;
-	
+
 	private StateprovinceRepository spRepo;
-	
+
 	@Autowired
 	public SalestaxrateServiceImp(SalestaxrateRepository repo, StateprovinceRepository spRepo) {
 		super();
@@ -34,24 +34,24 @@ public class SalestaxrateServiceImp implements SalestaxrateService{
 	@Override
 	public Salestaxrate saveSalestaxrate(Salestaxrate str, int stateprovinceid) throws FailedValidationsException, ElementNotFoundException {
 		Salestaxrate result  = null;
-//		
-//		if(str.getName()==null || str.getName().isBlank() || str.getName().length()<5) {
-//			throw new FailedValidationsException("El nombre debe tener al menos 5 caracteres");
-//		}
-//		else if(str.getTaxrate().signum()<0) {
-//			throw new FailedValidationsException("La tasa no debe ser negativa");
-//			
-//		}
-//		else {
-//			Optional<Stateprovince> opt1 = this.spRepo.findById(stateprovinceid);
-//			if(opt1.isPresent()) {
-//				str.setStateprovinceid(stateprovinceid);
-//				result = this.repo.save(str);
-//			}else {
-//				throw new ElementNotFoundException("El estado provincia no existe");
-//			}
-//		}
-//		
+		//		
+		//		if(str.getName()==null || str.getName().isBlank() || str.getName().length()<5) {
+		//			throw new FailedValidationsException("El nombre debe tener al menos 5 caracteres");
+		//		}
+		//		else if(str.getTaxrate().signum()<0) {
+		//			throw new FailedValidationsException("La tasa no debe ser negativa");
+		//			
+		//		}
+		//		else {
+		//			Optional<Stateprovince> opt1 = this.spRepo.findById(stateprovinceid);
+		//			if(opt1.isPresent()) {
+		//				str.setStateprovinceid(stateprovinceid);
+		//				result = this.repo.save(str);
+		//			}else {
+		//				throw new ElementNotFoundException("El estado provincia no existe");
+		//			}
+		//		}
+		//		
 		return result;
 	}
 
@@ -67,7 +67,7 @@ public class SalestaxrateServiceImp implements SalestaxrateService{
 		}
 		return result;
 	}
-	
+
 	public Optional<Salestaxrate> findById(Integer id) {
 		return repo.findById(id);
 	}
@@ -81,8 +81,25 @@ public class SalestaxrateServiceImp implements SalestaxrateService{
 	public void save(Salestaxrate str) {
 
 		repo.save(str);
-		
+
 	}
 
-	
+	public Salestaxrate edit(Salestaxrate tax, Integer stateprovinceid) {
+
+		Salestaxrate actual = null;
+
+		if(tax.getSalestaxrateid() != null) {
+			Optional<Salestaxrate> optional = repo.findById(tax.getSalestaxrateid());
+			if(optional.isPresent()) {
+				tax.setStateprovince(spRepo.findById(stateprovinceid).get());
+				save(tax);
+				actual = findById(tax.getSalestaxrateid()).get();
+			}
+		}
+
+
+		return actual;
+
+	}
+
 }

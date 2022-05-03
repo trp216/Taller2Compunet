@@ -30,7 +30,7 @@
 								<th>Tax Rate</th>
 								<th>Tax type</th>
 								<th>State-province</th>
-						
+								<th>Edit</th>
 								
 							</tr>
 						</thead>
@@ -41,6 +41,8 @@
 								<td th:text="${tax.taxrate}"></td>
 								<td th:text="${tax.taxtype}"></td>
 								<td th:text="${tax.stateprovince.name}"></td>
+								<td><a th:href="@{/tax/edit/{id}(id=${tax.salestaxrateid})}"
+                                    class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
 								
 								
 							</tr>

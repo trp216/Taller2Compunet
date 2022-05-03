@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -64,4 +65,39 @@ public class TaxControllerImpl {
 		return "redirect:/tax/";
 	}
 
+	
+	@GetMapping("/tax/edit/{id}")
+	public String showEditTax(@PathVariable("id") Integer id,Model model) {
+		Salestaxrate salestaxrate = strService.findById(id).get();
+		if (salestaxrate == null)
+			throw new IllegalArgumentException("Invalid sales Id:" + id);
+		
+		model.addAttribute("salestaxrate", salestaxrate);
+		model.addAttribute("provinces", spService.findAll());
+		return "tax/edit-tax";
+	}
+	
+	@PostMapping("/tax/edit/{id}")
+	public String editTax(@PathVariable("id") Integer id, @RequestParam(value = "action", required = true) 
+	String action, @Validated(Miracle.class) @ModelAttribute Salestaxrate salestaxrate, BindingResult bindingResult, Model model) {
+		
+		if (action.equals("Cancel")) {
+			return "redirect:/tax/";
+		}
+		
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("taxes", strService.findAll());
+			
+			return "tax/index";
+		}
+		if (!action.equals("Cancel")) {
+			salestaxrate.setSalestaxrateid(id);
+			strService.edit(salestaxrate,salestaxrate.getStateprovince().getStateprovinceid());
+			model.addAttribute("taxes", strService.findAll());
+			
+		}
+		return "redirect:/tax/";
+	}
+	
+	
 }
